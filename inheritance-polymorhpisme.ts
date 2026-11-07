@@ -21,6 +21,11 @@ class Lord extends PublicEnemy {
         super(16000, 100, 100, 100);
     }
 
+    healing(): string {
+        this.hp += 50
+        return (` HP bertambah ${this.hp}`)
+    }
+
     areaEffect(): void {
         this.attack;
     }
@@ -31,6 +36,17 @@ class Lord extends PublicEnemy {
 }
 
 class Turtle extends PublicEnemy {
+    type: string;
+
+    constructor () {
+        super(1600, 10 ,10, 30);
+        this.type = "renang";
+    }
+
+    isSwim(): string {
+        return (`kura kuranya bergerak dengan cara ${this.type}`)
+    }
+
     basicAttack(): number {
         return this.attack = 20;
     }
@@ -44,5 +60,7 @@ class RedDragon extends PublicEnemy {
     }
 }
 
-const lord1 = new Lord()
-console.log(lord1.areaEffect());
+const kura = new Turtle ();
+console.log(kura.isSwim());
+
+

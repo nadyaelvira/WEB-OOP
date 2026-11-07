@@ -1,4 +1,4 @@
-class LatMario {
+class Mario {
     hp: number = 1;
     speed: number = 5;
     positionX: number = 0;
@@ -21,18 +21,25 @@ class LatMario {
         return (`Mario kebal terhadap serangan.`);
     }
 
-    superMushroom(): number {
+    superMushroom(): string {
         this.hp += 1;
-        return this.hp;
+        this.curruntForm = "super mario";
+        return (`Mario menjadi ${this.curruntForm}, HP bertambah ${this.hp}`);
     }
 
     fireFlower(): string {
         this.hp += 1;
-        return (`Mario menjadi fire mario, HP bertambah ${this.hp} dan dapat menembakkan bola api.`);
+        this.curruntForm = "fire mario"
+        return (`Mario menjadi ${this.curruntForm}, HP bertambah ${this.hp} dan dapat menembakkan bola api.`);
     }
 }
 
-class superMario extends LatMario {
+class superMario extends Mario {
+    superStar(): string {
+        this.invincible = true;
+        return (`Mario kebal terhadap serangan.`);
+    }
+
     getAttacked(): void {
         if (this.invincible == true) {
             console.log ("serangan tidak berpengaruh");
@@ -44,9 +51,14 @@ class superMario extends LatMario {
     }
 }
 
-class fireMario extends LatMario {
+class fireMario extends Mario {
+    superStar(): string {
+        this.invincible = true;
+        return (`Mario kebal terhadap serangan.`);
+    }
+
     getAttacked(): void {
-        if (this.invincible) {
+        if (this.invincible == true) {
             console.log("serangan tidak berpengaruh");
         } else {
             this.hp -= 1;
@@ -58,5 +70,5 @@ class fireMario extends LatMario {
 
 
 
-const mario2 = new superMario()
-mario2.getAttacked();
+const mario2 = new Mario()
+console.log(mario2.superStar());
