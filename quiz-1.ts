@@ -4,7 +4,8 @@ class Mario {
     positionX: number = 0;
     positionY: number = 0;
     invincible: boolean = false;
-    curruntForm: "mario" | "super mario" | "fire mario" = "mario";
+    currentForm: "mario" | "super mario" | "fire mario" = "mario";
+
 
     moveRigth(): number {
         this.positionX += this.speed;
@@ -16,28 +17,34 @@ class Mario {
         return this.positionX;
     }
 
-    superStar(): string {
+    superStar(): void {
         this.invincible = true;
-        return (`Mario kebal terhadap serangan.`);
+        console.log (`Mario kebal terhadap serangan.`);
     }
 
     superMushroom(): string {
         this.hp += 1;
-        this.curruntForm = "super mario";
-        return (`Mario menjadi ${this.curruntForm}, HP bertambah ${this.hp}`);
+        this.currentForm = "super mario";
+        return (`Mario menjadi ${this.currentForm}, HP bertambah ${this.hp}`);
     }
 
     fireFlower(): string {
         this.hp += 1;
-        this.curruntForm = "fire mario"
-        return (`Mario menjadi ${this.curruntForm}, HP bertambah ${this.hp} dan dapat menembakkan bola api.`);
+        this.currentForm = "fire mario"
+        return (`Mario menjadi ${this.currentForm}, HP bertambah ${this.hp} dan dapat menembakkan bola api.`);
     }
 }
 
 class superMario extends Mario {
-    superStar(): string {
+
+    constructor() {
+        super();
+        this.currentForm = "super mario";
+    }
+
+    superStar(): void {
         this.invincible = true;
-        return (`Mario kebal terhadap serangan.`);
+        console.log (`Mario kebal terhadap serangan.`);
     }
 
     getAttacked(): void {
@@ -45,16 +52,22 @@ class superMario extends Mario {
             console.log ("serangan tidak berpengaruh");
         } else {
             this.hp -= 1;
-            this.curruntForm = "mario";
-            console.log (`Mario diserang, HP berkurang ${this.hp} dan kembali ke form ${this.curruntForm}.`)
+            this.currentForm = "mario";
+            console.log (`Mario diserang, HP berkurang ${this.hp} dan kembali ke form ${this.currentForm}.`)
         }
     }
 }
 
 class fireMario extends Mario {
-    superStar(): string {
+
+    constructor() {
+        super();
+        this.currentForm = "fire mario";
+    }
+
+    superStar(): void {
         this.invincible = true;
-        return (`Mario kebal terhadap serangan.`);
+        console.log (`Mario kebal terhadap serangan.`);
     }
 
     getAttacked(): void {
@@ -62,13 +75,22 @@ class fireMario extends Mario {
             console.log("serangan tidak berpengaruh");
         } else {
             this.hp -= 1;
-            this.curruntForm = "mario";
-            console.log(`Mario diserang, HP berkurang ${this.hp} dan kembali ke form ${this.curruntForm}.`)
+            this.currentForm = "mario";
+            console.log(`Mario diserang, HP berkurang ${this.hp} dan kembali ke form ${this.currentForm}.`)
         }
     }
 }
 
 
 
-const mario2 = new Mario()
-console.log(mario2.superStar());
+const mario = new Mario();
+const supermario = new superMario();
+const firemario = new fireMario();
+
+console.log(mario.superMushroom());
+console.log(mario.fireFlower());
+mario.superStar();
+supermario.getAttacked();
+firemario.getAttacked();
+console.log(mario.moveRigth());
+console.log(mario.moveLeft());
